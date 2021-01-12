@@ -30,7 +30,7 @@
       <div class="col-4 p-1">
         <button
           class="btn btn-danger w-100 eq"
-          :disabled="wasAnOperator || !display"
+          :disabled="wasAnOperator || !display || processed"
           @click="process"
         >
           =
@@ -109,7 +109,11 @@ export default {
     replaceLastOne(char) {
       this.display = this.display.substring(0, this.lastIndex) + char;
     },
+    // test() {
+    //   return 0;
+    // },
     process() {
+      // console.log(eval("2*this.test()"));
       const res = Math.floor(eval(this.display));
       if (res === Infinity || res === -Infinity) {
         this.clear();
